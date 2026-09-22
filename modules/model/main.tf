@@ -6,7 +6,8 @@ locals {
 
   all_devices = [for device in local.devices : {
     name    = device.name
-    url     = device.url
+    url     = try(device.url, null)
+    host    = try(device.host, null)
     managed = try(device.managed, local.defaults.nso.devices.managed, true)
   }]
 

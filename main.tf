@@ -24,11 +24,19 @@ locals {
 }
 
 provider "nso" {
-  username  = try(local.nso.global.username, null)
-  password  = try(local.nso.global.password, null)
-  insecure  = try(local.nso.global.insecure, null)
-  retries   = try(local.nso.global.retries, null)
-  instances = local.provider_devices
+  transport            = try(local.nso.global.transport, null)
+  url                  = try(local.nso.global.url, null)
+  host                 = try(local.nso.global.host, null)
+  username             = try(local.nso.global.username, null)
+  password             = try(local.nso.global.password, null)
+  insecure             = try(local.nso.global.insecure, null)
+  retries              = try(local.nso.global.retries, null)
+  attempt_timeout      = try(local.nso.global.attempt_timeout, null)
+  total_timeout        = try(local.nso.global.total_timeout, null)
+  lock_release_timeout = try(local.nso.global.lock_release_timeout, null)
+  reuse_connection     = try(local.nso.global.reuse_connection, null)
+  auto_commit          = try(local.nso.global.auto_commit, null)
+  instances            = local.provider_devices
 }
 
 # locals {
